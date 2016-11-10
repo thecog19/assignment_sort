@@ -4,22 +4,52 @@ def merge_sort(arr)
   arr_right = arr[arr.size/2..-1]
   arr_left = merge_sort(arr_left)
   arr_right = merge_sort(arr_right)
-  merge(arr_left, arr_right)
+  merge(arr_left, arr_right) #2,1
 end
 
 def merge(arr_left, arr_right)
   arr_new = []
-  left_value = arr_left.shift
+  goal_length = arr_left.length + arr_right.length
+  until arr_new.length == goal_length 
+    right_value = arr_right[0] || 9999999 #talk about during code review
+    left_value = arr_left[0] || 9999999 #talk about during code review
+    if right_value <= left_value
+      arr_new << right_value
+      arr_right.shift 
+    elsif right_value > left_value 
+      arr_new << left_value 
+      arr_left.shift
+    end
+  end
+  return arr_new
 end
 
-function mergeSort(array) {
-    // if the array is one element long, just return it
+start = Time.now
+p merge_sort([2,1,4,2,1,5,6,7,888,234,2,-3,-102,2,1,4,2,1,5,6,7,888,234,2,-3,-102,2,1,4,2,1,5,6,7,888,234,2,-3,-102,2,1,4,2,1,5,6,7,888,234,2,-3,-102])
+p Time.now - start
 
-    // mergeSort() the left half of the array
+# [1,2]
 
-    // mergeSort() the right half of the array
+# [1] [2]
 
-    // merge() the two halves
+# get 1, 2
 
-    // return the merged array
-}
+# compare 1,2 
+
+# store 1
+
+# arrays are empty 
+
+# get a new value for 1, not for 2 
+# compare nil, 2
+
+# store 2 
+
+  #   left_value = arr_left.shift unless arr_left.empty? 
+  #   right_value = arr_right.shift unless arr_right.empty?  
+  #   if right_value >= left_value
+  #     arr_new << right_value 
+  #   elsif right_value < left_value
+  #     arr_new << left_value #2
+  #   end
+  # end
